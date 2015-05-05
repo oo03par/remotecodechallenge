@@ -8,7 +8,7 @@ This is a deliberately simple project with a few small tasks to complete.
 * Complete as many stories as you can
 * Choose an appropriate technology to implement this in
 * Should provide a method of proving the effectiveness of the program
-* Please fork this repository and send us the link to your fork
+* Please manually clone this repository and send us the link to your implementation when finished
 * An example "devices.json" file is provided
 
 ---

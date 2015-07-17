@@ -1,4 +1,4 @@
-# WDS Remote Code Test
+# WDS Remote Code Challenge
 
 This is an exercise, but there is not one right answer.  Please do not distribute without permission.
 This is a deliberately simple project with a few small tasks to complete.

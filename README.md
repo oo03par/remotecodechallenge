@@ -85,4 +85,4 @@ If you have any questions then you can email dev@wds.co for help.
 
 ---
 
-(c) WDS, A Xerox Company 2015.  Please do not distribute without permission.
+(c) WDS, A Xerox Company 2016.  Please do not distribute without permission.

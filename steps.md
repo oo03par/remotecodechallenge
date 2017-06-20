@@ -40,3 +40,36 @@ You can also add a line into the scripts object to set the value for the test sc
 Once you have finished editing your _package.json_ file, you will need to run the following command to update your node installation:
 
 `npm update`
+
+## Step 3 - Writing a failing test
+
+Add a new file into the project root, called _mocha.opts_. Inside this file, add the following:
+
+```
+--require should
+--reporter spec
+--ui bdd
+--recursive
+```
+
+Create a new folder under the project root, called _test_.
+
+Inside this folder, create a new file called _app.js_. This will be the main test for your application.
+
+To this file, add the following code:
+
+```javascript
+'use strict';
+
+describe('application', function() {
+	it('should intentionally fail', function(done) {
+		throw new Error('this is a failure');
+	});
+});
+```
+
+Now, at the command line, you can run 
+
+`npm test`
+
+which will fail.

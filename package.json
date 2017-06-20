@@ -1,0 +1,19 @@
+{
+  "name": "devicebrowser",
+  "version": "1.0.0",
+  "description": "Load the device file and show them",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oo03par/remotecodechallenge.git"
+  },
+  "author": "Phil Riley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oo03par/remotecodechallenge/issues"
+  },
+  "homepage": "https://github.com/oo03par/remotecodechallenge#readme"
+}

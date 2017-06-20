@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Load the device file and show them",
   "main": "app.js",
-  "scripts":{
+  "scripts": {
     "test": "mocha --timeout 10000"
   },
   "repository": {
@@ -20,5 +20,8 @@
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
     "mocha": "^2.4.5"
+  },
+  "dependencies": {
+    "express": "^4.15.3"
   }
 }

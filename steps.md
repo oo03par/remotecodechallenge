@@ -73,3 +73,71 @@ Now, at the command line, you can run
 `npm test`
 
 which will fail.
+
+## Step 4 - TDD for fun and profit
+
+### Remove temporary test, and add new application test
+
+Change the contents of the test, removing the "should intentionally fail" test, and adding a new test for the application running on the correct port.
+
+```javascript
+'use strict';
+
+let chai = require('chai');
+let chaiHttp = require('chai-http');
+let app = require('../app');
+let should = chai.should();
+
+chai.use(chaiHttp);
+
+describe('application', function() {
+	it('should have a default ok request', function(done) {
+		chai
+			.request(app)
+			.get('/')
+			.end((err, res) => {
+				res.should.have.status(200);
+				done();
+			})
+	});
+});
+```
+
+Now, running `npm test` you will get a failure 'Cannot find module app'. This is expected, as we have not yet created it!
+
+### Adding application module, and installing Express
+
+Create a file in the root of the project called _app.js_. This will be our application entry point.
+
+As this application is going to use Express, run the following command, which will install Express and add it into the Node dependencies (you'll notice the _package.json_ will update):
+
+`npm install express --save`
+
+Run your test script again, using `npm test`. You'll have another error message - hopefully something about app.address is not a function. This is expected, as we have not added any code into our application yet.
+
+### Creating empty Express application
+
+In the newly created _app.js_, add the following:
+
+```javascript
+'use strict';
+
+const express = require('express')
+const app = express()
+
+let port = 8080;
+
+app.get('/', function (req, res) {
+  res.send('Hello World!')
+})
+
+app.listen(port, function () {
+  console.log('Application running')
+})
+
+module.exports = app // for testing
+```
+
+> Note - if you do not add the final line about module.exports, your test will fail with an error similar to "app.address is not a function"
+
+Next run your test again; you should have a green test. Congratulations - you have written a TDD app.

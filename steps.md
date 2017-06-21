@@ -141,3 +141,68 @@ module.exports = app // for testing
 > Note - if you do not add the final line about module.exports, your test will fail with an error similar to "app.address is not a function"
 
 Next run your test again; you should have a green test. Congratulations - you have written a TDD app.
+
+## Step 5 - TDD Controller for Story 1
+
+### First failing test
+
+For our application, we want to create a controller which will allow us to load a list of devices from a file, and display all of them. We will start with a new test.
+
+Create a new test file called _devices.js_. This file will contain our tests for the devices controller (which we will create later).
+
+Within this file, add the following test code, then run it. It should fail (remember the TDD cycle - Red, Green, Refactor).
+
+```javascript
+'use strict';
+
+let chai = require('chai');
+let chaiHttp = require('chai-http');
+let app = require('../app');
+let should = chai.should();
+
+chai.use(chaiHttp);
+
+describe('Devices Controller', function() {
+	it('should not have any devices if none have been loaded', function(done) {
+		chai
+			.request(app)
+			.get('/devices')
+			.end((err, res) => {
+				res.should.have.status(200);
+				res.body.should.be.a('array');
+				res.body.length.should.be.eql(0);
+				done();
+			})
+	});
+});
+```
+
+### Test passing - serve an empty JSON array
+
+In order to make this test pass, create a new folder under tha main application, calling it _controllers_. Within this folder, create a file called _devices.js_. This will be our controller for the devices.
+
+Within the _devices.js_ controller, add the following code:
+
+```javascript
+'use strict';
+
+function getDevices(req, res) {
+	res.send([]);
+}
+
+module.exports = {getDevices}
+```
+
+In the original _app.js_ file, add the following line (after the express initialisation):
+
+```javascript
+let devices = require('./controllers/devices');
+```
+
+Also in the _app.js_, add the following above the exports. This will create a route to get devices, linking it to the controller method created above.
+
+```javascript
+app.route('/devices').get(devices.getDevices);
+```
+
+Run the tests, and all should be well.
